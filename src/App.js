@@ -4,6 +4,7 @@ import "./App.css";
 function App() {
   return (
     <div>
+      <MyComponent heading="React" />
       <MyComponent heading="Java" desc="Java is cool." />
       <MyComponent heading="Javascript" desc="Javascript is Hot!!" />
       <MyComponent heading="Python" desc="Python is Intelligent!!" />
@@ -12,7 +13,7 @@ function App() {
 }
 
 // Reading the PROPS passed by the Parent.
-function MyComponent({ heading, desc }) {
+function MyComponent({ heading = "Default Heading", desc = "NA" }) {
   return (
     <div className="bg-dark p-3 text-light mb-1">
       <h1>Learning {heading}</h1>
