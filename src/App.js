@@ -118,7 +118,7 @@ function MyRegisterComponent() {
               <tr>
                 <td>{item.id}</td>
                 <td>{item.name}</td>
-                <td>{item.password}</td>
+                <td>*****</td>
                 <td>{item.email}</td>
                 <td>{item.mobile}</td>
               </tr>
