@@ -12,14 +12,24 @@ export default function App() {
 function MyComponent() {
   const clickHandler = (e) => {
     console.log(e);
-    alert("Somethign Somethign!!", e);
+    // alert("Somethign Somethign!!", e);
   };
 
   return (
     <div>
       <h1>Hello World</h1>
 
-      <input type="button" value="CLICK ME" onClick={clickHandler} />
+      <input type="button" value="CLICK ME 1" onClick={clickHandler} />
+      <input
+        type="button"
+        value="CLICK ME 2"
+        onClick={(e) => clickHandler(e)} // Explicitly Passing the e
+      />
+      <input
+        type="button"
+        value="CLICK ME 33"
+        onClick={(e) => clickHandler()} // Removd the e intentionaly
+      />
     </div>
   );
 }
