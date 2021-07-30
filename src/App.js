@@ -13,7 +13,6 @@ export default function App() {
 function MyRegisterComponent() {
   let [userList, setUserList] = useState([
     { id: 1, name: "rahul", email: "rahul@gmail.com", mobile: "212121" },
-    { id: 2, name: "sachin", email: "sachin@gmail.com", mobile: "212121" },
   ]);
 
   const [username, setUsername] = useState("");
