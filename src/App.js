@@ -25,15 +25,20 @@ function MyRegisterComponent() {
 
   return (
     <div>
-      <h1>Lets connect with backend</h1>
+      <h1 className="bg-primary text-light p-4">Lets connect with backend</h1>
       <input
         type="button"
+        className="btn btn-primary w-100 mb-1"
         value="MAKE AJAX/BACKEND CALL"
         onClick={makeAjaxBackendApiCall}
       />
 
       {list.map((item) => {
-        return <div>{item.title}</div>;
+        return (
+          <div className="alert alert-primary text-capitalize">
+            {item.title}
+          </div>
+        );
       })}
     </div>
   );
