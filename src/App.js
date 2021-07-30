@@ -1,5 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
+import { useState } from "react";
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
 }
 
 function MyRegisterComponent() {
+  let [userList, setUserList] = useState([1, 1]);
   return (
     <div>
       <h1 className="bg-dark text-light p-3 ">User Registeation </h1>
@@ -69,13 +71,17 @@ function MyRegisterComponent() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Rahul</td>
-            <td>@#@#@#@#</td>
-            <td>rahul@mgmil.com</td>
-            <td>121212</td>
-          </tr>
+          {userList.map((item) => {
+            return (
+              <tr>
+                <td>1</td>
+                <td>Rahul</td>
+                <td>@#@#@#@#</td>
+                <td>rahul@mgmil.com</td>
+                <td>121212</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
