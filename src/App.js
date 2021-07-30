@@ -11,7 +11,23 @@ export default function App() {
 }
 
 function MyRegisterComponent() {
-  let [userList, setUserList] = useState([1, 1]);
+  let [userList, setUserList] = useState([
+    { id: 1, name: "rahul", email: "rahul@gmail.com", mobile: "212121" },
+    { id: 2, name: "sachin", email: "sachin@gmail.com", mobile: "212121" },
+  ]);
+
+  const addNewUser = () => {
+    const newuser = {
+      id: userList.length + 1,
+      name: "Sample",
+      email: "sample@gmail.com",
+      mobile: "1212",
+    };
+
+    const newUserList = [newuser, ...userList];
+    setUserList(newUserList);
+  };
+
   return (
     <div>
       <h1 className="bg-dark text-light p-3 ">User Registeation </h1>
@@ -54,6 +70,7 @@ function MyRegisterComponent() {
           <input
             type="button"
             value="Register"
+            onClick={addNewUser}
             className="btn btn-lg btn-secondary w-100"
           />
         </div>
@@ -74,11 +91,11 @@ function MyRegisterComponent() {
           {userList.map((item) => {
             return (
               <tr>
-                <td>1</td>
-                <td>Rahul</td>
-                <td>@#@#@#@#</td>
-                <td>rahul@mgmil.com</td>
-                <td>121212</td>
+                <td>{item.id}</td>
+                <td>{item.name}</td>
+                <td>{item.password}</td>
+                <td>{item.email}</td>
+                <td>{item.mobile}</td>
               </tr>
             );
           })}
