@@ -19,8 +19,8 @@ function MyRegisterComponent() {
     const result = await axios.get(url);
 
     // console.log(result.data);
-    const newlist = [...result.data, ...list];
-    setList(newlist);
+    // const newlist = [...result.data, ...list];
+    setList(result.data);
   };
 
   return (
