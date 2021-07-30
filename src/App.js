@@ -12,10 +12,15 @@ export default function App() {
 }
 
 function MyRegisterComponent() {
+  const [list, setList] = useState([]);
+
   const makeAjaxBackendApiCall = async () => {
     const url = "https://jsonplaceholder.typicode.com/posts";
     const result = await axios.get(url);
-    console.log(result.data);
+
+    // console.log(result.data);
+    const newlist = [...result.data, ...list];
+    setList(newlist);
   };
 
   return (
@@ -26,6 +31,10 @@ function MyRegisterComponent() {
         value="MAKE AJAX/BACKEND CALL"
         onClick={makeAjaxBackendApiCall}
       />
+
+      {list.map((item) => {
+        return <div>{item.title}</div>;
+      })}
     </div>
   );
 }
