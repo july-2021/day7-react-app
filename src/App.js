@@ -18,9 +18,13 @@ function MyRegisterComponent() {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [mobile, setMobile] = useState("");
 
   const usernameChangeHandler = (e) => setUsername(e.target.value);
   const passwordChangeHandler = (e) => setPassword(e.target.value);
+  const emailChangeHandler = (e) => setEmail(e.target.value);
+  const mobileChangeHandler = (e) => setMobile(e.target.value);
 
   const addNewUser = () => {
     const newuser = {
@@ -33,6 +37,12 @@ function MyRegisterComponent() {
 
     const newUserList = [newuser, ...userList];
     setUserList(newUserList);
+
+    // After Success
+    setUsername("");
+    setPassword("");
+    setEmail("");
+    setMobile("");
   };
 
   return (
@@ -66,6 +76,8 @@ function MyRegisterComponent() {
             type="email"
             className="form-control form-control-lg mb-1"
             placeholder="Enter Email"
+            value={email}
+            onChange={emailChangeHandler}
           />
         </div>
 
@@ -74,6 +86,8 @@ function MyRegisterComponent() {
             type="mobile"
             className="form-control form-control-lg mb-1"
             placeholder="Enter Mobile"
+            value={mobile}
+            onChange={mobileChangeHandler}
           />
         </div>
 
