@@ -1,31 +1,25 @@
 import logo from "./logo.svg";
 import "./App.css";
 
-function App() {
+export default function App() {
   return (
     <div>
-      <MyComponent heading="React" />
-      <MyComponent heading="Java" desc="Java is cool." />
-      <MyComponent heading="Javascript" desc="Javascript is Hot!!" />
-      <MyComponent heading="Python" desc="Python is Intelligent!!" />
+      <MyComponent />
     </div>
   );
 }
 
-// Reading the PROPS passed by the Parent.
-function MyComponent({ heading = "Default Heading", desc = "NA" }) {
+function MyComponent() {
+  const clickHandler = (e) => {
+    console.log(e);
+    alert("Somethign Somethign!!", e);
+  };
+
   return (
-    <div className="bg-dark p-3 text-light mb-1">
-      <h1>Learning {heading}</h1>
-      <hr />
-      <p>
-        <mark className="rounded alert-warning">{desc}</mark> Lorem ipsum dolor
-        sit amet consectetur adipisicing elit. Earum harum iusto, repellendus
-        officia cumque officiis amet sed aspernatur rem assumenda recusandae
-        odio ipsa libero a voluptas voluptate, facere reiciendis aliquam?
-      </p>
+    <div>
+      <h1>Hello World</h1>
+
+      <input type="button" value="CLICK ME" onClick={clickHandler} />
     </div>
   );
 }
-
-export default App;
