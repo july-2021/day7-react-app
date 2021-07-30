@@ -10,9 +10,8 @@ export default function App() {
 }
 
 function MyComponent() {
-  const clickHandler = (e) => {
-    console.log(e);
-    // alert("Somethign Somethign!!", e);
+  const clickHandler = (e, id) => {
+    console.log(e, id);
   };
 
   return (
@@ -28,7 +27,7 @@ function MyComponent() {
       <input
         type="button"
         value="CLICK ME 33"
-        onClick={(e) => clickHandler()} // Removd the e intentionaly
+        onClick={(e) => clickHandler(e, 100)} // Customised :: explicityly create the arrow function
       />
     </div>
   );
