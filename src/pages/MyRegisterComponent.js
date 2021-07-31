@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { BrowserRouter, Route, Link, useHistory } from "react-router-dom";
 
 export function MyRegisterComponent() {
   const history = useHistory();
+  const fromEL = useRef();
   let [userList, setUserList] = useState([]);
 
   const [username, setUsername] = useState("");
@@ -16,29 +17,37 @@ export function MyRegisterComponent() {
   const emailChangeHandler = (e) => setEmail(e.target.value);
   const mobileChangeHandler = (e) => setMobile(e.target.value);
 
-  const addNewUser = async () => {
-    const newuser = {
-      id: userList.length + 1,
-      username: username,
-      password: password,
-      email: email,
-      mobile: mobile,
-    };
+  const addNewUser = async (e) => {
+    // console.log(fromEL.current, fromEL.current.checkValidity());
+    if (fromEL.current.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
 
-    const newUserList = [newuser, ...userList];
-    setUserList(newUserList);
+      fromEL.current.classList.add("was-validated");
+    } else {
+      const newuser = {
+        id: userList.length + 1,
+        username: username,
+        password: password,
+        email: email,
+        mobile: mobile,
+      };
 
-    // MAKE THE API CALL
-    let url = "http://localhost:4000/user-create";
-    await axios.post(url, { ...newuser, id: null });
+      const newUserList = [newuser, ...userList];
+      setUserList(newUserList);
 
-    history.push("/list");
+      // MAKE THE API CALL
+      let url = "http://localhost:4000/user-create";
+      await axios.post(url, { ...newuser, id: null });
 
-    // After Success
-    setUsername("");
-    setPassword("");
-    setEmail("");
-    setMobile("");
+      history.push("/list");
+
+      // After Success
+      setUsername("");
+      setPassword("");
+      setEmail("");
+      setMobile("");
+    }
   };
 
   return (
@@ -46,7 +55,7 @@ export function MyRegisterComponent() {
       <h6 className="bg-dark text-light p-2 ">User Registeation </h6>
 
       {/** FORM COMPONENT */}
-      <form className="m-2">
+      <form ref={fromEL} className="m-2 needs-validation" novalidate>
         <div>
           <input
             type="text"
@@ -54,6 +63,7 @@ export function MyRegisterComponent() {
             placeholder="Enter username"
             value={username}
             onChange={usernameChangeHandler}
+            required
           />
         </div>
 
@@ -64,6 +74,7 @@ export function MyRegisterComponent() {
             placeholder="Enter Passwword"
             value={password}
             onChange={passwordChangeHandler}
+            required
           />
         </div>
 
@@ -74,6 +85,7 @@ export function MyRegisterComponent() {
             placeholder="Enter Email"
             value={email}
             onChange={emailChangeHandler}
+            required
           />
         </div>
 
@@ -84,6 +96,7 @@ export function MyRegisterComponent() {
             placeholder="Enter Mobile"
             value={mobile}
             onChange={mobileChangeHandler}
+            required
           />
         </div>
 
