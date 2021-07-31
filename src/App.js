@@ -30,8 +30,8 @@ function MyRegisterComponent() {
       id: userList.length + 1,
       name: username,
       password: password,
-      email: "sample@gmail.com",
-      mobile: "1212",
+      email: email,
+      mobile: mobile,
     };
 
     const newUserList = [newuser, ...userList];
