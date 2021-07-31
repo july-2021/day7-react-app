@@ -2,11 +2,26 @@ import logo from "./logo.svg";
 import "./App.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route, Link, useHistory } from "react-router-dom";
 
 export default function App() {
   return (
     <BrowserRouter>
+      <div className="bg-dark mb-1 p-3">
+        <Link
+          to="/register"
+          className="btn btn-sm btn-link text-dark btn-light w-50 "
+        >
+          Register
+        </Link>
+        <Link
+          to="/list"
+          className="btn btn-sm text-dark btn-link btn-light w-50"
+        >
+          User List
+        </Link>
+      </div>
+
       <Route exact path="/register" component={MyRegisterComponent} />
       <Route exact path="/list" component={MyUserListComponent} />
       <Route exact path="/" component={MyRegisterComponent} />
@@ -15,6 +30,7 @@ export default function App() {
 }
 
 function MyRegisterComponent() {
+  const history = useHistory();
   let [userList, setUserList] = useState([]);
 
   const [username, setUsername] = useState("");
@@ -41,8 +57,9 @@ function MyRegisterComponent() {
 
     // MAKE THE API CALL
     let url = "http://localhost:4000/user-create";
-    // await axios.post(url, newuser);
     await axios.post(url, { ...newuser, id: null });
+
+    history.push("/list");
 
     // After Success
     setUsername("");
@@ -53,7 +70,7 @@ function MyRegisterComponent() {
 
   return (
     <div>
-      <h1 className="bg-dark text-light p-3 ">User Registeation </h1>
+      <h6 className="bg-dark text-light p-2 ">User Registeation </h6>
 
       {/** FORM COMPONENT */}
       <form className="m-2">
@@ -126,7 +143,7 @@ function MyUserListComponent() {
 
   return (
     <div>
-      <h1 className="bg-dark text-light p-3 ">User List </h1>
+      <h6 className="bg-dark text-light p-2 ">User List </h6>
 
       {/** List BOX HERE */}
       <table className="table table-dark table-striped m-2">
