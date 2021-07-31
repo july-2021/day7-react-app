@@ -29,6 +29,7 @@ function MyRegisterComponent() {
   }, []);
 
   const readAllUser = async () => {
+    // GET API
     let url = "http://localhost:4000/user-list";
     const response = await axios.get(url);
     // setUserList(response.data);
