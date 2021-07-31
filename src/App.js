@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function App() {
@@ -12,9 +12,7 @@ export default function App() {
 }
 
 function MyRegisterComponent() {
-  let [userList, setUserList] = useState([
-    { id: 1, username: "rahul", email: "rahul@gmail.com", mobile: "212121" },
-  ]);
+  let [userList, setUserList] = useState([]);
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -25,6 +23,17 @@ function MyRegisterComponent() {
   const passwordChangeHandler = (e) => setPassword(e.target.value);
   const emailChangeHandler = (e) => setEmail(e.target.value);
   const mobileChangeHandler = (e) => setMobile(e.target.value);
+
+  useEffect(() => {
+    readAllUser();
+  }, []);
+
+  const readAllUser = async () => {
+    let url = "http://localhost:4000/user-list";
+    const response = await axios.get(url);
+    // setUserList(response.data);
+    setUserList(response.data.reverse());
+  };
 
   const addNewUser = async () => {
     const newuser = {
@@ -40,6 +49,7 @@ function MyRegisterComponent() {
 
     // MAKE THE API CALL
     let url = "http://localhost:4000/user-create";
+    // await axios.post(url, newuser);
     await axios.post(url, { ...newuser, id: null });
 
     // After Success
